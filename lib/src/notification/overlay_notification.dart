@@ -91,6 +91,26 @@ OverlaySupportEntry showSimpleNotification(
    * The direction in which the notification can be dismissed.
    */
   DismissDirection? slideDismissDirection,
+  AlignmentGeometry? alignment,
+  EdgeInsetsGeometry? padding,
+  Color? color,
+  Decoration? decoration,
+  Decoration? foregroundDecoration,
+  double? width,
+  double? height,
+  BoxConstraints? constraints,
+  EdgeInsetsGeometry? margin,
+  Matrix4? transform,
+  AlignmentGeometry? transformAlignment,
+  Clip clipBehavior = Clip.none,
+  MaterialType type = MaterialType.canvas,
+  Color? shadowColor,
+  Color? surfaceTintColor,
+  TextStyle? textStyle,
+  BorderRadiusGeometry? borderRadius,
+  ShapeBorder? shape,
+  bool borderOnForeground = true,
+  Duration animationDuration = kThemeChangeDuration,
 }) {
   final dismissDirection = slideDismissDirection ??
       (slideDismiss ? DismissDirection.horizontal : DismissDirection.none);
@@ -100,9 +120,30 @@ OverlaySupportEntry showSimpleNotification(
         direction: dismissDirection,
         key: ValueKey(key),
         child: Material(
-          color: background ?? Theme.of(context).colorScheme.secondary,
+          color: background ?? Colors.transparent,
           elevation: elevation,
-          child: SafeArea(
+          borderRadius: borderRadius,
+          shape: shape,
+          shadowColor: shadowColor,
+          clipBehavior: clipBehavior,
+          animationDuration: animationDuration,
+          borderOnForeground: borderOnForeground,
+          surfaceTintColor: surfaceTintColor,
+          textStyle: textStyle,
+          type: type,
+          child: Container(
+            margin: margin,
+            width: width,
+            height: height,
+            constraints: constraints,
+            alignment: alignment,
+            padding: padding,
+            decoration: decoration,
+            foregroundDecoration: foregroundDecoration,
+            transform: transform,
+            transformAlignment: transformAlignment,
+            clipBehavior: clipBehavior,
+            child: SafeArea(
               bottom: position == NotificationPosition.bottom,
               top: position == NotificationPosition.top,
               child: ListTileTheme(
@@ -117,7 +158,9 @@ OverlaySupportEntry showSimpleNotification(
                   trailing: trailing,
                   contentPadding: contentPadding,
                 ),
-              )),
+              ),
+            ),
+          ),
         ),
       );
     },

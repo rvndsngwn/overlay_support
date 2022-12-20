@@ -17,7 +17,18 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               showSimpleNotification(
                 Text('this is a message from simple notification'),
-                background: Colors.green,
+                // background: Colors.green,
+                margin: EdgeInsets.all(38),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  gradient: LinearGradient(
+                    colors: [Colors.green, Colors.blue],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  color: Colors.red,
+                ),
+                elevation: 0,
               );
             },
             child: Text(
